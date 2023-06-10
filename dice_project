@@ -1,0 +1,37 @@
+#Ronit Khromchenko
+import random
+
+def createDice():
+    sideDie=[1,2,3,4,5,6]
+    return sideDie
+def rollDice(die):
+    d1=random.randint(0,5)
+    die1=die[d1]
+
+    d2=random.randint(0,5)
+    die2=die[d2]
+
+    dieTuple=(die1,die2)
+    return dieTuple
+
+def playGame(dieTuple):
+    run=True
+    while(run):
+        print("Let's roll a pair of dice!")
+        dieOne=dieTuple[0]
+        dieTwo=dieTuple[1]
+        print("You rolled a {} and a {}.". format(dieOne, dieTwo))
+        question=input("Do you want to roll the dice again?")
+        if question.lower()=="no":
+            run=False
+            print("Thank you for playing")
+        elif question=="yes":
+            dieTuple=rollDice(die)
+        else:
+            print("That's not a valid response.")
+
+
+die=createDice()
+dieTuple=rollDice(die)
+playGame(dieTuple)
+
