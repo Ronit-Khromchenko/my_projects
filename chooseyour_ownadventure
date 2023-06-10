@@ -1,0 +1,200 @@
+#Ronit Khromchenko
+import random
+#Tells instructions of the game and asks the user for their name
+def disneyIsland():
+  character= input("Please enter your name:")
+  print("Hello {}!". format(character))
+  print("You have just arrived to Disney Island after falling down a magic tree.The island is filled with all your favorite Disney Characters and of course villains.")
+  print("Unfortunately, all though this might be every child's dream, you are incredibly homesick and have to go home immediately.")
+  print("Play the game to return back to your parents or forever stay on the island.")
+  print("Please type all your answer choice in capitals such as 'A' or 'B'")
+  return character
+ 
+ 
+        
+#This  runs the whole adventure game
+def playGame(character):
+  print("Hello {}!". format(character))
+  playing = 'play'
+  while(playing == 'play'):
+      princess=['Snow White','Cinderella','Ariel','Elsa','Sleeping Beauty','Belle','Meridith','Mulan','Tiana','Jasmine']
+      randomPrincess=random.choice(princess)
+      villains=['Captain Hook','Ursula','Evil Stepmother','Mother Gothel','Jafar','Maleficent','Lucifer','Evil step sisters','Gaston']
+      randomVillain=random.choice(villains)
+      print("Welcome!You are currently outside the gates of the {0} 's Grand Castle. This is home to {0}. Your goal this round is to successfully escape {1} and pass through the grand castle without getting caught.". format(randomPrincess,randomVillain))
+      guide=['Olaf','Flounder','Aboo','Sven','Gus']
+      guidingPeople=random.choice(guide)
+      print("your guide will be {}, they will help guide you along the way and give clues to you when needed.". format(guidingPeople))
+      print("")
+      enter=input("You need to enter the Grand Castle gate will you A.Climb over the Spikey edged gate or B. Slip Through one of the holes:")
+      if enter=='A':
+          print("You were caught by the evil stepmother and , she has locked you in the attic. You are slowly bleeding out as you cut your leg on the fence")
+          print("{} has come to save you!". format(guidingPeople))
+      elif enter=='B':
+          print("You were Successful!You squeezed through the gate.")
+          #Scenario 2
+          print("-"*50)
+      print("You are now over the gate, but you hear footsteps.")
+      bushes=input("What do you do? A. Hide in the bushes B. run into the open front castle door C.Pretend you are one of the servants:")
+      if bushes=='A':
+           print("You are safe!{} didn't see you.". format(randomVillain))
+           print("While squirming in the bushes you find Cinderella's slippers.")
+           slipper=input("Do you A.Pick the slipper up and place it in your backpack or B.Don't touch it and leave:")
+           if slipper=='A':
+               print("You have a hint from your guide!")
+               hint=input("Would you like to use it? (please enter yes or no)")
+               if hint== 'yes':
+                   print("Throw the slipper and use it as a commotion to distract everyone in the castle in order to enter it")
+                   print("You used this hint to get inside,however you weren't quick enough")
+               dead='yes'
+               if hint =='no':
+                   print("Without the hint, you don't know what to do and are stuck.")
+               dead='yes'
+           if slipper=='B':
+               print("You have decided not to take the slipper, however this would have really helped you. Continue Playing")
+               dead='No'
+      if bushes=='B':
+          print("Unfortunately, Lucifer attacked you as you were running towards the door. He scratched you pretty badly and you didn't make it.I guess it's true what they say black cats are bad luck.")
+          dead = 'yes'
+      if bushes =='C':
+          print ("You were Successful! You have now entered the castle be careful and don't blow your cover!")
+          print("You are now inside the Castle and your goal is to get to the back door without getting caught")
+          dead='No'
+ 
+  
+      if dead == 'yes':
+          play=input("Do you want to play again? Please enter Yes or No:")
+          if play== "Yes":
+              playGame(character)
+          if play=="No":
+             playing = 'do not play'
+             print("Game Over")
+             print("Thanks for playing!")
+          else:
+             print("That's not a valid response")
+      else:
+         insideCastle=input("Do you A.army crawl through the grand ballroom, B.use Aladdin's Magic Carpet, C.Use Ariel's mermaid fin to glide across: ")
+         if insideCastle=='A':
+              print("Unfortunately, your army crawl isn't very skilled and you were caught by one of the guards. They throw you in prison and have to stay!")
+              dead32='yes'
+    
+         if insideCastle=='B':
+              print("It worked! You are at the back gate.")
+              print("You are ready for the new round!")
+              print("The haunted woods are waiting for you!")
+              dead32='No'
+         if insideCastle=='C':
+              print("It worked! You are at the back gate.")
+              print("You are ready for the new round!")
+              print("The haunted woods are waiting for you!")
+              dead32='No'
+         if dead32 == 'yes':
+              play2=input("Do you want to play again? Please enter Yes or No:")
+              if play2== "Yes":
+                   playGame(character)
+              if play2=="No":
+                 playing = 'do not play'
+                 print("Game Over")
+                 print("Thanks for playing!")
+              else:
+                 print("That's not a valid response")
+         else:#This is round 2
+             print("_"*50)
+             print("Tools:")
+             tools=['Boat keys,Poisoned apple,Magic mirror,Magic wand']
+ 
+             for help in tools:
+                  print(help)
+                  chooseTool=input("You are about to enter the Haunted Woods. Choose a tool:")
+                  print("You chose {0} as your tool.". format (chooseTool))
+                  print("You need to cross the haunted woods in order to get to the Elsa's ice castle")
+             transport= input("Will you A. Take a ferry B.Ride on Sven C.Walk with Olaf D.Go on the mine train:")
+             if transport=='A':
+                  print("Oh no!,the engine won't start!You're stranded in the haunted woods!")
+                  dead3='yes'
+             if transport=='B':
+                  print ("Your ride was a little bumpy but you made it to the end of the forest!")
+                  dead3='No'
+             if transport == 'C':
+                  print("The walk with Olaf was warm and fuzzy filled with lots of singing. You have arrived at the end of the haunted woods.")
+                  dead3='No'
+             if transport == 'D':
+                  print("The ride on the train was nice and quick. You have arrived at the end of the haunted woods")
+                  dead3='No'
+             if dead3 == 'yes':
+                  play3=input("Do you want to play again? Please enter Yes or No:")
+                  if play3== "Yes":
+                       playGame(character)
+                  if play3=="No":
+                     playing = 'do not play'
+                     print("Game Over")
+                     print("Thanks for playing!")
+             else:
+                 print("You come across a glass key.")
+                 key=input("Do you take it? A. Yes or B.No:")
+                 if key=='A':
+                     print("Right Choice! You may now unlock the glass door that leads you to Elsa's castle! You are almost on your way home!")
+                     dead4='No'
+                 if key=='B':
+                     print("Darn, you were so close! You don't have the key to open the door  that lead you out of the forest.While you were waiting the Queen of Hearts spotted you and imprisoned you!")
+                     dead4='yes'
+                 if dead4 == 'yes':
+                     play4=input("Do you want to play again? Please enter Yes or No:")
+                     if play4== "Yes":
+                           playGame(character)
+                     if play4=="No":
+                         playing = 'do not play'
+                         print("Game Over")
+                         print("Thanks for playing!")
+                 else:
+                     print("To enter the ice Castle you have to past Marshmallow the Ice Monster")
+                     iceCastle=input("Will you A.pour water on him, B.give him a warm hug, C.use Meridith's bow to shoot him:")
+                     if iceCastle=='A':
+                          print("Aww you melted Marshmallow. You can now enter the ice castle!")
+                     if iceCastle=='B':
+                          print("Aww your hug melted Marshmallow. You can now enter the ice castle!")
+                     if iceCastle=='C':
+                          print("Nice aim! You shot Marshmallow right in the shoulder. You can now enter the ice castle!")
+                     print("Now that you have entered the ice castle, you have to go down to the port where a boat is waiting to take you home:")
+                     downstairs=input("How will you get down to the port? A.glass elevator , B.Follow Sebastian the crab, C.Tarzan's rope:")
+                     if downstairs=='A':
+                          print("Nice and Fast! You have made it to the port and on board the ship!")
+                          print("Congrats! You will make it home!")
+                          dead5='yes'
+                     if downstairs=='B':
+                          print("Sebastion led you to the port!You have made it to the port and on board the ship!")
+                          print("Congrats! You will make it home!")
+                          dead5='yes'
+                     if downstairs=='C':
+                          print("Although a thrilling swing!You have made it to the port and on board the ship!")
+                          print("Congrats! You will make it home!")
+                          dead5='yes'
+                     if dead5 == 'yes':
+                          play5=input("Do you want to play again? Please enter Yes or No:")
+                          if play5== "Yes":
+                               playGame(character)
+                          if play5=="No":
+                             playing = 'do not play'
+                             print("Game Over")
+                             print("Thanks for playing!")
+                
+                 
+                
+     
+ 
+character=disneyIsland()
+playGame(character)
+ 
+ 
+ 
+
+
+ 
+
+
+
+
+
+
+
+
