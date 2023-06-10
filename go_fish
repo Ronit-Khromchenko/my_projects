@@ -1,0 +1,158 @@
+#Ronit Khromchenko
+import random
+#Tells you the directions of the game
+def goFish():
+    print("Welcome to Go Fish!The direction of the games is each player gets five cards. If you are dealt a four of a kind, or get four of a kind during game play, that’s called a book, and those cards are removed from your hand, and you get a point.")
+    print("Moving clockwise, players take turns asking a specific player for a specific card.  For example, Player One may ask Player Two for an Ace.")
+    print("If someone asks you for a card that you have, all cards that match that value are taken from your hand.")
+    print("If you do not have any cards of that rank, your opponent must “go fish”, taking one new card from the pile of cards.")
+    print("If you run out of cards and there are still cards left, you get five free cards.")
+    print("Play continues until all hands are empty and there are no more cards to draw from. The winner is the player with the most points at the end of the game.")
+    print("")
+#Shuffling the random deck
+def createDeck():
+    deck=['2','2','2','2','3','3','3','3','A','A','A','A','4','4','4','4','5','5','5','5','6','6','6','6','7','7','7','7','8','8','8','8','9','9','9','9','10','10','10','10','J','J','J','J','Q','Q','Q','Q','K','K','K','K']
+    random.shuffle(deck)
+    return deck
+#Finding out Player 1 and Player 2's hands and dealing the cards.
+def dealCards(deck):
+    p1=[]
+    card=0
+    while card<5:
+        p1.append(deck[0])
+        deck.pop(0)
+        card=card + 1
+    p2=[]
+    card=0
+    while card<5:
+        p2.append(deck[0])
+        deck.pop(0)
+        card=card+1
+    print("Player 1's deck is {} .". format(p1))
+    print("Player 2's deck is {}.". format(p2))
+    print("You have {} cards remaining in your deck.". format(len(deck)))
+    hands=(p1,p2)
+    return hands
+#seeing the score
+def playGame(deck,hands):
+    p1=hands[0]
+    p2=hands[1]
+    p1Score=0
+    p2Score=0
+    #run your code before adding the following
+    run=True
+    while (run):
+        cardWanted=input("Player 1, ask player two for a card:")
+        if cardWanted in p2:
+            tempP2=[]
+            for card in p2:
+                if card==cardWanted:
+                    p1.append(card)
+                elif card != cardWanted:
+                    tempP2.append(card)
+            p2=[]
+            p2=list(tempP2)
+            print("Player 1, player 2 had the card!")
+            print("Player 1 your deck of cards now is {}.". format(p1))  
+        else:
+            print("go fish!")
+            p1.append(deck[0])
+            deck.pop(0)
+            print("Player 1 your deck of cards now is {}.". format (p1))          
+                      
+                
+#player 2
+        cardWanted2=input("Player 2, ask player one for a card:")
+        if cardWanted2 in p1:
+            tempP1=[]
+            for card in p1:
+                if card==cardWanted2:
+                    p2.append(card)
+                elif card != cardWanted2:
+                    tempP1.append(card)
+            p1=[]
+            p1=list(tempP1)
+            print("Player 2, player 1 had the card!")
+            print("Player 2 your deck of cards now is {0}.". format(p2))  
+        else:
+            print("go fish!")
+            p2.append(deck[0])
+            deck.pop(0)
+            print("Player 2 your deck of cards now is {0}.". format (p2))
+
+#asking for a book
+        newP1=[]
+        index=0
+        book= input("Player 1, what set of cards would you like to discard? If you do not have four please continue and hit enter.")
+        count=0
+        for card in p1:
+            if book==card:
+                count=count+1
+        if count == 4:
+            while index<len(p1):
+                bk=p1[index]
+                if bk !=book:
+                    newP1.append(bk)
+                index=index+1
+            p1=[]
+            p1=list(newP1)
+            p1Score=p1Score+1
+        else:
+            print("You do not have a book a.k.a four cards.")
+        print("Player 1, your deck now is {0}, and you have {1} points.". format(p1,p1Score))
+        newP2= []
+        index=0
+        book= input("Player 2, what set of cards would you like to discard? If you do not have four please continue.")
+        count=0
+        for card in p2:
+            if book==card:
+                count = count+1
+        if count == 4:
+            while index<len(p2):
+                bk=p2[index]
+                if bk !=book:
+                    newP2.append(bk)
+                index=index+1
+            p2=[]
+            p2=list(newP2)
+            p2Score=p2Score+1
+        else:
+            print("You do not have a book.")
+        print("Player 2, your deck now is {0}, and you have {1} points.". format(p2,p2Score))
+
+#The end of the code
+        if len(deck)<=5:
+            run=False 
+            if p1Score>p2Score:
+                print("Congratulations Player One, You won!")
+            elif p2Score<p1Score:
+                print("Congratulations Player Two, You won!")
+            elif p1Score==p2Score:
+                print("Player One and Player Two you guys Tied!")
+        
+        if len(p1)==0:
+            p1=[]
+            card=0
+            while card<5:
+                p1.append(deck[0])
+                deck.pop(0)
+                card=card + 1
+                print("Player 1, you just received five new cards, your list now is {} .". format(p1))
+        if len(p2)==0:
+            p2=[]
+            card=0
+            while card<5:
+                p2.append(deck[0])
+                deck.pop(0)
+                card=card+1
+                print("Player 2, you just received five new cards, your list now is {}.". format(p2))
+
+            
+            
+    
+
+goFish()
+deck=createDeck()
+hands= dealCards(deck)
+playGame(deck,hands)
+
